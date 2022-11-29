@@ -36,6 +36,12 @@ public class StudentController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(ls);
 	}
 	
+	@GetMapping(value="/getStudentById/{id}")
+	public ResponseEntity<Object> getStudentById(@PathVariable("id") int id){
+		Student ls=service.getStudentById(id);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(ls);
+	}
+	
 	@PutMapping(value="/updateById/{id}")
 	public ResponseEntity<Student> updateByid(@PathVariable("id") int id,@RequestBody Student m){
 		Student newStudent=service.updateById(id, m);
@@ -44,7 +50,13 @@ public class StudentController {
 	
 	@DeleteMapping(value="/deleteById/{id}")
 	public ResponseEntity<Object> deleteById(@PathVariable("id")int id){
-		service.deleteStudent(id);
-		return ResponseEntity.status(HttpStatus.OK).body("Student deleted");
+		Student s=service.deleteStudent(id);
+		return ResponseEntity.status(HttpStatus.OK).body(s);
+	}
+	
+	@PostMapping(value="/addBulkStudent")
+	public ResponseEntity<Object> addBulkStudent(@RequestBody Student[] d){
+		Student[] a=service.addBulkStudent(d);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(a);
 	}
 }

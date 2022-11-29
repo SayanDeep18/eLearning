@@ -22,4 +22,8 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleFacultyNotFoundException(NoFacultyFound e){
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
+	@ExceptionHandler(NoCourseFound.class)
+	public ResponseEntity<String> handleCourseNotFoundException(NoCourseFound e){
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+	}
 }

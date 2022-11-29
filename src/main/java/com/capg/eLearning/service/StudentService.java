@@ -22,6 +22,17 @@ public class StudentService {
 		return t;
 	}
 	
+	public Student[] addBulkStudent(Student[] s) {
+		int n=s.length;
+		for(int i=0;i<n;i++) {
+			Student t=s[i];
+			repo.save(t);
+		}
+		//Student t=repo.save(s);
+		//System.out.println(t.getId());
+		return s;
+	}
+	
 	public List<Student> getAllStudent(){
 		List<Student> list=repo.findAll();
 		return list;
@@ -53,10 +64,22 @@ public class StudentService {
 		return oldStudent;
 	}
 	
-	public void deleteStudent(int id){
+	public Student deleteStudent(int id){
 		Optional<Student> t=repo.findById(id);
 		if(t.isPresent()) {
-			repo.deleteById(id);
+			 Student s=t.get();
+			 repo.deleteById(id);
+			 return s;
+		}
+		else {
+			throw new NoStudentFound("no student found with this id");
+		}
+	}
+	
+	public Student getStudentById(int id) {
+		Optional<Student> s=repo.findById(id);
+		if(s.isPresent()) {
+			return s.get();
 		}
 		else {
 			throw new NoStudentFound("no student found with this id");
