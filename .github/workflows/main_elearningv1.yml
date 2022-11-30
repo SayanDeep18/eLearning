@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'eLearningV1'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_68DEC5EF1A0F4692AB97F6B5E3F4C079 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1DB050931ECE4512A08E1D392EFDEAB2 }}
           package: '*.jar'
